@@ -1,0 +1,26 @@
+# ==========================
+# SUES-200 训练集特征提取配置
+# ==========================
+model:
+  name: AnyLoc
+  dino_model: dinov3_vith16plus
+  desc_layer: 28
+  desc_facet: token
+  use_cls: false
+  aggre_type: GeM
+  save_dir: /root/autodl-tmp/0-pipei-dinov3/feats_sues  # 训练特征保存目录
+
+workers: 4
+
+# 此部分不参与提取，但在 extract_and_save 中会被 DATASET 读取
+eval:
+  dataset: SUES_Image_D2S
+  data_path: /root/autodl-tmp/SUES-200-Standard/Training
+  batch_size: 64
+  output: feat
+  pos_eval: false
+  refine: false
+  transform:
+    - Resize256
+    - ToTensor
+    - normalize

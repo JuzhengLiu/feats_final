@@ -1,0 +1,25 @@
+# ==========================
+# SUES-200 测试集 S2D 特征提取配置
+# ==========================
+model:
+  name: AnyLoc
+  dino_model: dinov3_vith16plus
+  desc_layer: 28
+  desc_facet: token
+  use_cls: false
+  aggre_type: GeM
+  save_dir: /root/autodl-tmp/0-pipei-dinov3/feats_sues_test_s2d # S2D 特征保存目录
+
+workers: 4
+
+eval:
+  dataset: SUES_Image_S2D
+  data_path: /root/autodl-tmp/SUES-200-Standard/Testing
+  batch_size: 64
+  output: feat
+  pos_eval: false
+  refine: false
+  transform:
+    - Resize256
+    - ToTensor
+    - normalize

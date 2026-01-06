@@ -1,0 +1,30 @@
+# 适配 SUES-200 的特征路径
+feat_root: '/root/autodl-tmp/0-pipei-dinov3/feats_sues_256/dinov3_vith16plus'
+output_dir: '/root/autodl-tmp/0-pipei-dinov3/outputs/sues_unsupervised_srdae_256'
+save_name: 'srdae_model_26_28.pth'
+
+# 融合层配置 (推荐配置)
+#fusion_layers: [23, 26, 29] 
+fusion_layers: [26, 28] 
+# 1280 * 3 = 3840
+input_dim: 2560
+latent_dim: 1280
+
+train:
+  batch_size: 256
+  epochs: 75
+  lr: 0.001
+  warmup_epochs: 5
+  drop_rate: 0.0      
+  
+  # # Loss Balancing (保持您的 V12 配置)
+  # lambda_recon: 1.0
+  # lambda_decov: 80.0   
+  # lambda_orth: 5.0     
+  # lambda_sparse: 0.05
+
+  # Loss Balancing (保持您的 V12 配置)
+  lambda_recon: 0.5
+  lambda_decov: 100.0   
+  lambda_orth: 10.0     
+  lambda_sparse: 0.001
